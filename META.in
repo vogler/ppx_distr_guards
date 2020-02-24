@@ -1,4 +1,0 @@
-version = "%{version}%"
-name = "%{name}%"
-description = "Extension to distribute guards over or-patterns."
-ppx = "./%{name}%.native"

@@ -1,21 +1,21 @@
 (library
-  (name ppx_distr_guards)
+  (public_name ppx_distr_guards)
   (modules ppx_distr_guards)
   (libraries ocaml-migrate-parsetree)
   (kind ppx_rewriter)
 )
 
 ; https://tarides.com/blog/2019-05-09-an-introduction-to-ocaml-ppx-ecosystem#testing-your-ppx
+; (test
+;   (name test)
+;   (modules test)
+;   (preprocess (pps ppx_distr_guards))
+; )
+
 (executable
   (name standalone)
   (modules standalone)
   (libraries ppx_distr_guards)
-)
-
-(test
-  (name test)
-  (modules test)
-  (preprocess (pps ppx_distr_guards))
 )
 
 (rule
