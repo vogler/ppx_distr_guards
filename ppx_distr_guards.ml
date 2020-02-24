@@ -33,7 +33,7 @@ let rec mapper =
 
 let () = register "distr_guards" (fun _ -> mapper)
 (*
-ocamlc -dparsetree foo.ml
-ocamlbuild -package compiler-libs.common ppx_foo.native
-ocamlc -dsource -ppx ./ppx_foo.native foo.ml
+ocamlc -dparsetree test.ml
+ocamlbuild -package compiler-libs.common ppx_distr_guards.native
+ocamlc -dsource -ppx ./ppx_distr_guards.native test.ml
 *)
