@@ -12,7 +12,7 @@ remove: ["ocamlfind" "remove" name]
 depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
+  "dune" {build}
   "ocaml-migrate-parsetree" {build}
-  "ppx_tools" {test}
 ]
 available: [ocaml-version >= "4.02.1" & opam-version >= "1.2"]

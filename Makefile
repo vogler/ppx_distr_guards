@@ -1,13 +1,16 @@
-name = ppx_distr_guards
-bin = $(name).native
+# name = ppx_distr_guards
+# bin = $(name).native
 
 build:
-	ocamlbuild -package compiler-libs.common $(bin)
+	# ocamlbuild -pkgs ocaml-migrate-parsetree $(bin)
+	dune build
 
 test:
-	ocamlbuild -package compiler-libs.common $(bin) && ocamlfind ppx_tools/rewriter ./$(bin) test.ml
+	# ocamlbuild -pkgs ocaml-migrate-parsetree $(bin) && ocamlfind ppx_tools/rewriter ./$(bin) test.ml
+	dune runtest
 
 clean:
-	ocamlbuild -clean
+	# ocamlbuild -clean
+	dune clean
 
 .PHONY: build test clean
