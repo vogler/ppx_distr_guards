@@ -19,10 +19,22 @@
 )
 
 (rule
- (targets test.actual.ml)
- (deps (:pp standalone.exe) (:input test.ml))
- (action (run ./%{pp} --impl %{input} -o %{targets})))
+  (targets test.actual.ml)
+  (deps (:pp standalone.exe) (:input test.ml))
+  (action (run ./%{pp} --impl %{input} -o %{targets}))
+)
+
+; The PPX for OCaml 4.02-4.05 prints no whitespace in tuples, so we add them. See https://github.com/ocaml/opam-repository/pull/15897
+(rule
+  (targets test.actual.norm.ml)
+  (deps (:input test.actual.ml))
+  ; sed -E 's/,([^ ])/, \1/' test.actual.ml > test.actual.norm.ml
+  (action (with-stdout-to test.actual.norm.ml (run sed -E "s/,([^ ])/, \\1/g" %{input})))
+)
 
 (rule
  (alias runtest)
- (action (diff test.expected.ml test.actual.ml)))
+;  (action (diff test.expected.ml test.actual.ml)) 
+;  (action (run diff -w test.expected.ml test.actual.ml)) ; does not work: https://github.com/ocaml/dune/issues/697#issuecomment-590785703
+ (action (diff test.expected.ml test.actual.norm.ml))
+)
