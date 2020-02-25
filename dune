@@ -21,7 +21,7 @@
 (rule
  (targets test.actual.ml)
  (deps (:pp standalone.exe) (:input test.ml))
- (action (run ./standalone.exe --impl %{input} -o %{targets})))
+ (action (run ./%{pp} --impl %{input} -o %{targets})))
 
 (rule
  (alias runtest)
