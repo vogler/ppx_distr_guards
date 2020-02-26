@@ -33,8 +33,8 @@
 )
 
 (rule
- (alias runtest)
-;  (action (diff test.expected.ml test.actual.ml)) 
-;  (action (run diff -w test.expected.ml test.actual.ml)) ; does not work: https://github.com/ocaml/dune/issues/697#issuecomment-590785703
- (action (diff test.expected.ml test.actual.norm.ml))
+  (alias runtest)
+  ; (action (diff test.expected.ml test.actual.ml)) 
+  ; (action (run diff -w test.expected.ml test.actual.ml)) ; does not work: https://github.com/ocaml/dune/issues/697#issuecomment-590785703
+  (action (diff test.expected.ml test.actual.norm.ml))
 )
