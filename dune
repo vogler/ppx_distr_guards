@@ -24,12 +24,12 @@
   (action (run ./%{pp} --impl %{input} -o %{targets}))
 )
 
-; The PPX for OCaml 4.02-4.05 prints no whitespace in tuples, so we add them. See https://github.com/ocaml/opam-repository/pull/15897
+; The PPX for OCaml 4.02-4.05 prints no whitespace in tuples, so we add them. They also add trailing whitespace in some places, which we remove everywhere. See https://github.com/ocaml/opam-repository/pull/15897
 (rule
   (targets test.actual.norm.ml)
   (deps (:input test.actual.ml))
-  ; sed -E 's/,([^ ])/, \1/' test.actual.ml > test.actual.norm.ml
-  (action (with-stdout-to test.actual.norm.ml (run sed -E "s/,([^ ])/, \\1/g" %{input})))
+  ; sed -E 's/,([^ ])/, \1/g; s/ *$//' test.actual.ml > test.actual.norm.ml
+  (action (with-stdout-to test.actual.norm.ml (run sed -E "s/,([^ ])/, \\1/g; s/ *$//" %{input})))
 )
 
 (rule
