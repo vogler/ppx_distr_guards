@@ -16,5 +16,6 @@
   (depends
    (dune (>= 2.3.0))
    (ocaml-migrate-parsetree (>= 1.6.0))
+   (odoc :with-doc)
   )
 )

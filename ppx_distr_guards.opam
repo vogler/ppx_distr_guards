@@ -12,6 +12,7 @@ bug-reports: "https://github.com/vogler/ppx_distr_guards/issues"
 depends: [
   "dune" {>= "2.3.0"}
   "ocaml-migrate-parsetree" {>= "1.6.0"}
+  "odoc" {with-doc}
 ]
 build: [
   ["dune" "subst"] {pinned}
