@@ -40,3 +40,7 @@ let h = function%distr (* do not transform nested matches that don't have the ex
     | _ -> 2
 
 (* let () = print_endline ("Result: " ^ string_of_int (f (A 0, A 1))) *)
+
+exception D of int 
+exception E of int 
+let i =  [%distr try Sys.readdir "" with | D n | E n when n <> 0 -> 1]
