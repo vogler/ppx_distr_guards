@@ -14,7 +14,6 @@ let rec case_to_cases ~ctxt case =
 
 and function_expand ~ctxt cases =
   let new_cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
-
   let loc = Expansion_context.Extension.extension_point_loc ctxt in
   Ast_helper.Exp.function_ ~loc new_cases
 
