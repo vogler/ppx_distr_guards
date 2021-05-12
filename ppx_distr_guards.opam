@@ -11,7 +11,7 @@ doc: "https://vogler.github.io/ppx_distr_guards"
 bug-reports: "https://github.com/vogler/ppx_distr_guards/issues"
 depends: [
   "dune" {>= "2.3.0"}
-  "ppxlib"
+  "ppxlib" {>= "0.15.0"}
   "odoc" {with-doc}
 ]
 build: [

@@ -15,7 +15,7 @@
   (description "`function%distr A x, _ | _, A x when p x -> e` will result in `function A x, _ when p x -> e | _, A x when p x -> e`")
   (depends
    (dune (>= 2.3.0))
-   ppxlib
+   (ppxlib (>= 0.15.0))
    (odoc :with-doc)
   )
 )
