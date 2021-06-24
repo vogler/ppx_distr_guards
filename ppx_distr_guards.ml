@@ -1,4 +1,5 @@
 open Ppxlib
+(* migration to ppxlib: https://github.com/vogler/ppx_distr_guards/pull/1 *)
 
 let rec case_to_cases ~ctxt case =
   match case with
@@ -42,3 +43,9 @@ let extension =
 let rule = Ppxlib.Context_free.Rule.extension extension
 
 let () = Driver.register_transformation ~rules:[ rule ] "distr_guards"
+
+(*
+  show parse tree: ocamlc -dparsetree test.ml
+  show result of ppx rewriter: dune exec ./standalone.exe test.ml
+  if you want to build without dune: ocamlfind ocamlc ppx_distr_guards.ml -package ppxlib -linkpkg standalone.ml -o standalone.exe
+*)
