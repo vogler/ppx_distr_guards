@@ -13,26 +13,14 @@ let rec case_to_cases ~ctxt case =
       List.map (fun p -> Ast_helper.Exp.case p ~guard pc_rhs) ps
   | x -> [ { x with pc_rhs = expand ~ctxt x.pc_rhs } ]
 
-and function_expand ~ctxt cases =
-  let new_cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
-  let loc = Expansion_context.Extension.extension_point_loc ctxt in
-  Ast_helper.Exp.function_ ~loc new_cases
-
-and match_expand ~ctxt expr cases =
-  let new_cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
-  let loc = Expansion_context.Extension.extension_point_loc ctxt in
-  Ast_helper.Exp.match_ ~loc expr new_cases
-
-and try_expand ~ctxt expr cases =
-  let new_cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
-  let loc = Expansion_context.Extension.extension_point_loc ctxt in
-  Ast_helper.Exp.try_ ~loc expr new_cases
-
 and expand ~ctxt e =
+  let loc = Expansion_context.Extension.extension_point_loc ctxt in
+  let map cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
+  let open Ast_helper.Exp in
   match e.pexp_desc with
-  | Pexp_function cases -> function_expand ~ctxt cases
-  | Pexp_match (e, cases) -> match_expand ~ctxt e cases
-  | Pexp_try (e, cases) -> try_expand ~ctxt e cases
+  | Pexp_function cases -> function_ ~loc (map cases)
+  | Pexp_match (e, cases) -> match_ ~loc e (map cases)
+  | Pexp_try (e, cases) -> try_ ~loc e (map cases)
   | _ -> e
 
 let extension =
