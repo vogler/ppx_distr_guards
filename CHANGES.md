@@ -1,3 +1,8 @@
+0.3 (30/06/2021)
+------------------
+
+- Migrate from ocaml-migrate-parsetree to ppxlib.
+
 0.2 (24/02/2020)
 ------------------
 
