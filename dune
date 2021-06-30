@@ -1,7 +1,7 @@
 (library
   (public_name ppx_distr_guards)
   (modules ppx_distr_guards)
-  (libraries ocaml-migrate-parsetree)
+  (libraries ppxlib)
   (kind ppx_rewriter)
 )
 
@@ -15,7 +15,7 @@
 (executable
   (name standalone)
   (modules standalone)
-  (libraries ppx_distr_guards)
+  (libraries ppx_distr_guards ppxlib)
 )
 
 (rule
