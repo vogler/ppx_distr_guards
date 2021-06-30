@@ -1,4 +1,4 @@
-(lang dune 2.3)
+(lang dune 2.7)
 (name ppx_distr_guards)
 (allow_approximate_merlin)
 (generate_opam_files true)
