@@ -18,7 +18,7 @@ and expand ~ctxt e =
   let map cases = cases |> List.map (case_to_cases ~ctxt) |> List.flatten in
   let open Ast_helper.Exp in
   match e.pexp_desc with
-  | Pexp_function cases -> function_ ~loc (map cases)
+  | Pexp_function ([], _constraint_, Pfunction_cases (cases, _, _)) -> function_ ~loc (map cases)
   | Pexp_match (e, cases) -> match_ ~loc e (map cases)
   | Pexp_try (e, cases) -> try_ ~loc e (map cases)
   | _ -> e
